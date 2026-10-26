@@ -120,9 +120,32 @@ FAN_HANDLES.splice(0,FAN_HANDLES.length,...FAN_HANDLES.filter(h=>!['seaside_46',
 Object.assign(FANS,{only_A:{name:'only_A',role:'a'},AB_archive:{name:'AB_archive',role:'cp'},milkzip:{name:'milkzip',role:'daily'},cloudnine:{name:'cloudnine',role:'passer'},mybias_071:{name:'mybias_071',role:'b'}});
 if(!NEW_CHAPTER_CONTENT&&PRESERVED.legacyChapters)CHAPTERS.forEach((c,i)=>{c.title=PRESERVED.legacyChapters[i][0];c.summary=PRESERVED.legacyChapters[i][1]});
 function fresh(){return {ready:false,a:'A',b:'B',group:'我们的组合',accounts:{a:{name:'A',handle:'a.official',avatar:''},b:{name:'B',handle:'b.official',avatar:''},alt:{name:'今天也在等下班',handle:'afterhours.27',avatar:''},x:{name:'慢慢看',handle:'slowframe_27',avatar:''}},phase:0,posts:[],comments:{},likes:[],bookmarks:[],following:[],chats:[],notifications:[],events:[],fans:32,dialogueKeys:[],talkInbox:[],sceneHistory:[],talkWaiting:false,schemaVersion:9,storyEpoch:Date.UTC(new Date().getFullYear(),new Date().getMonth(),new Date().getDate(),0)-9*3600000,storyMinute:0,completedSegments:[],tasks:{}}}
-let R,loadError='',toastId;try{const raw=localStorage.getItem(KEY);R=raw?JSON.parse(raw):fresh();if(raw&&!localStorage.getItem(KEY+'.backup-before-v9'))try{localStorage.setItem(KEY+'.backup-before-v9',raw)}catch{}}catch{R=fresh();loadError='原存档无法读取，未覆盖原数据。'}
+let R,loadError='',toastId;try{const raw=localStorage.getItem(KEY);R=raw?JSON.parse(raw):fresh();/* Legacy full-size backups are no longer created on page load. */}catch{R=fresh();loadError='原存档无法读取，未覆盖原数据。'}
 function txt(s){return String(s??'').replaceAll('{a}',R.a).replaceAll('{b}',R.b)}
-function save(){if(loadError)return false;try{localStorage.setItem(KEY,JSON.stringify(R));return true}catch{toast('空间不足，本次修改未能保存。请先导出存档。');return false}}
+function save(){if(loadError)return false;
+  let serialized;
+  try{serialized=JSON.stringify(R)}catch(err){console.error('Save serialization failed',err);toast('保存失败，请暂时不要关闭页面。');return false}
+  try{localStorage.setItem(KEY,serialized);return true}catch(err){
+    // A legacy full-size backup can consume the remaining localStorage quota.
+    // Reclaim it only if the current main save is independently readable.
+    if(err&&(err.name==='QuotaExceededError'||err.code===22||err.code===1014)){
+      try{
+        const previous=localStorage.getItem(KEY);
+        const legacy=KEY+'.backup-before-v9';
+        if(previous&&localStorage.getItem(legacy)){
+          const parsed=JSON.parse(previous);
+          if(parsed&&typeof parsed==='object'&&parsed.accounts&&Array.isArray(parsed.posts)){
+            localStorage.removeItem(legacy);
+            localStorage.setItem(KEY,serialized);
+            return true;
+          }
+        }
+      }catch(retryError){console.warn('Save retry after legacy backup cleanup failed',retryError)}
+      toast('本地存储空间不足，本次操作未保存。请勿清除浏览器数据。');
+    }else{console.error('Save write failed',err);toast('保存失败，请暂时不要关闭页面。')}
+    return false;
+  }
+}
 function normalize(){const d=fresh();for(const [k,v]of Object.entries(d))if(R[k]===undefined)R[k]=v;R.accounts=Object.fromEntries(Object.keys(d.accounts).map(k=>[k,{...d.accounts[k],...(R.accounts?.[k]||{})}]));for(const k of ['posts','chats','notifications','events','likes','bookmarks','following','talkInbox','dialogueKeys','completedSegments'])if(!Array.isArray(R[k]))R[k]=[];if(!R.comments||typeof R.comments!=='object')R.comments={};R.phase=Math.max(0,Math.min(7,Number(R.phase)||0));R.tasks??={};R.fanInteractions??=[];R.fanFamiliarity??={};R.nodeChoices??={};R.schemaVersion=9;R.events=R.events.map(e=>({...e,step:Number.isFinite(e.step)?Math.min(3,Math.max(0,e.step)):0,due:Number.isFinite(e.due)?e.due:Date.now()}));if(!Number.isFinite(R.storyEpoch))R.storyEpoch=d.storyEpoch;if(!Number.isFinite(R.storyMinute))R.storyMinute=0;R.legacyCommentArchives??={};R.legacySceneChats??=[];const normalChats=[];for(const m of R.chats){if(m.id?.startsWith('chapter:')){if(!R.legacySceneChats.some(x=>x.id===m.id))R.legacySceneChats.push(m)}else normalChats.push(m)}R.chats=normalChats;R.fansBase??=Number(R.fans)||32;R.quoteTasks??={}}
 normalize();
 function inferItem(p){if(p.itemId&&ITEMS[p.itemId])return p.itemId;const prop=String(p.prop||'');const explicit=Object.entries(ITEMS).find(([id,x])=>id!=='generic'&&x.aliases.some(a=>prop===a||prop.includes(a)));const hits=Object.entries(ITEMS).filter(([id,x])=>id!=='generic'&&x.aliases.some(a=>String(p.body||'').includes(a)));if(explicit&&(!hits.length||hits.every(([id])=>id===explicit[0])))return explicit[0];if(!explicit&&hits.length===1)return hits[0][0];return 'generic'}
