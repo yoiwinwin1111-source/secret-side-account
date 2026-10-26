@@ -938,17 +938,154 @@ station|我把图存完了 你们的字我存不动
 archive|你问的那句和你引用的不是一回事
 newfan|我先点个收藏 不是站队 是怕找不到`;
 COMMENT_THREADS.history.push(['你不爱看还看这么久','我只是路过','那你这路过得挺慢']);
+// Instagram has its own text library; it never reuses the X reply tree.
+const COMMENT_IG_LINES={
+daily:`daily|这张我喜欢🤍
+station|光刚好落在这里 好看
+newfan|怎么拍出这么干净的背景的
+passer|我的相册只有快递单。。
+daily|今天也记一点小事
+group|这张看着好舒服
+a|出门回来刷到了 点个赞
+b|我也想有空随便走走
+cp|今天不乱想 先看照片
+archive|你是用原相机拍的吗
+daily|我正在整理相册 整理着整理着来刷你了
+newfan|我也想开始拍一点日常了
+station|这张的颜色很好看
+passer|我拍完像证件 你拍完像生活
+b|晚点再来 手机快没电了
+daily|发出来以后感觉这一天没白过
+cp|我来看看今天更了什么
+a|先留个赞 我去忙了
+station|好想把自己的相册也收拾一下
+daily|今天过得怎么样呀`,
+earphone_case:`daily|这个颜色！🤍
+archive|侧边能拍一下吗 想看挂绳孔
+newfan|是什么牌子的壳呀
+station|放这里拍还挺好看的
+a|好像见过这个配色 型号记不清了
+b|会不会很容易沾灰呀
+daily|我那个壳用到现在都没这么干净
+passer|看完低头擦了一下自己的
+cp|我想认同款 但我连型号都不认识
+archive|先问清型号 颜色真的太多了
+daily|挂个醒目的挂件真的不容易丢
+newfan|会影响充电吗 我没买过这种
+station|这个角度看着像软壳 是吗
+b|开合顺吗 我最怕卡住
+a|找到就好 别又塞包底了ㅋㅋㅋ
+daily|我现在就去翻翻包
+passer|找着等于省了买新的钱
+cp|今天先蹲链接 我那个也坏了
+archive|有另一面的图吗
+newfan|先存一下 买之前回来问`,
+coffee:`daily|冰的热的呀☕
+daily|几分糖 想抄一下
+station|杯子拍得好看 我忍不住了
+newfan|奶味重不重
+b|看得我也想喝一杯了
+a|这个颜色看起来就很香
+passer|我刚喝完 现在又想喝了
+daily|有没有不太酸的推荐呀
+archive|这杯具体叫什么名字
+cp|我今天只问咖啡 真的
+newfan|喝不了苦的能试试吗
+group|空腹别喝太急啊
+daily|那明天也给自己安排一杯
+station|我拍的杯子像路边垃圾 你这个怎么回事
+passer|先把我的白开水放下
+b|我下午喝了到现在还不困
+a|店名方便说吗 不方便也没事
+daily|我也喜欢喝完舍不得扔的杯子
+archive|冰块融了以后味道会淡吗
+cp|杯子好看 已经忘记自己本来进来看什么了`,
+mouse:`daily|这个配色放桌上舒服诶
+archive|具体型号是什么呀
+newfan|手小的人能用吗
+station|和桌面放一起好好看
+passer|我的桌子现在只有一个能放鼠标的洞
+b|按键声音大不大
+cp|好 今天是真的在看数码
+newfan|要装软件吗
+archive|有线还是无线的
+а|这个色我也喜欢
+station|看得我想收拾桌子了
+daily|握久了会不会累呀
+b|滚轮好用吗 想蹲
+passer|鼠标还在看 钱包先走了
+newfan|笔记本能直接用吗
+archive|接收器记得收好 我丢过
+daily|我的旧鼠标应该还能再干两年
+cp|我先存 等有空试握一下
+station|桌垫也很搭
+а|用久了再说说呀`,
+takeout:`daily|先问好吃吗！！
+station|这份拍得我饿了
+daily|辣不辣呀 我最近胃不太行
+newfan|是哪家 想点同款饭
+passer|我一个人也吃得下两份 真的
+cp|两份 一人一份 够我瞎想一下了
+b|合着点两份饭就够你开始点名了？
+cp|我点谁名了 你自己来签收ㅋㅋㅋ
+a|我只想吃饭 不是来做阅读理解的
+archive|图里没拍到人 先别给桌子安排座位
+station|这个包装看着不容易洒汤
+newfan|饭量够不够 我很能吃
+b|吃口热的吧 评论区一会儿再看
+passer|老板可能都没你们研究得仔细
+daily|看完去点单了
+cp|我又没说是哪两个人 别围着我问
+а|这顿看着挺香的
+archive|有清楚一点的菜单图吗
+passer|我研究一下优惠券 你们继续
+station|另一份看起来也不错`,
+gift:`daily|挑颜色真的好难啊
+cp|很重要的人？我先竖个耳朵
+passer|你先让人把礼物买完
+newfan|我每次都挑到最后一天
+b|先想他平时会用什么吧
+а|我投实用的 一直用着挺好的
+daily|别让他先看到购物记录哈哈
+station|包装也好看 想看包好的样子
+archive|要定制的话先问发货时间
+cp|我不问了 我等你送完再来
+passer|你这纠结程度 对面应该偷乐了
+group|定了就别再刷啦 越刷越难选
+newfan|我送礼物比自己买还紧张
+b|别选到最后先把自己急到了
+а|他能经常用就很好
+station|记得拍一下包装🤍`,
+ad:`а|实物颜色挺好看的
+b|用着怎么样 这个我真想问
+archive|具体哪一款呀
+station|包装我会留着不扔
+newfan|有缺点吗 我好决定要不要买
+cp|今天只问使用感 不嗑
+passer|钱包听了先退半步
+daily|我买东西总是先被包装拽住
+а|等个用久一点的反馈
+b|我上次拆都没拆完 不敢再买了
+archive|活动价和原价差多少
+newfan|第一次买这个系列 求个指路
+station|拍得我想把桌上那份拆了
+cp|先存图 冲动消费等明天再说
+passer|你们先买 我看着
+а|如果真的好用再来讲讲呀`
+};
 
 /* Comments-only upgrade. The preceding v5.2 HTML/JS stays byte-for-byte intact. */
 (()=>{
-const EDITION=9,cache=new Map(),limits=new Map(),replyLimits=new Map();let sortMode='hot';
+const EDITION=10,cache=new Map(),limits=new Map(),replyLimits=new Map();let sortMode='hot',focusedReply=null;const focusStack=[],expandedReplies=new Set(),savedScroll=new Map();
 const people=Object.fromEntries(COMMENT_PEOPLE.map(([handle,name,role])=>[handle,{handle,name,role}]));
 const pools=Object.fromEntries(Object.entries(COMMENT_LINES).map(([topic,body])=>[topic,body.trim().split('\n').map(s=>{const at=s.indexOf('|');return {role:s.slice(0,at).replace('а','a'),text:s.slice(at+1)}})]));
-const old={render,postHTML,commentHTML,findComment,fanReplyOptions,fanAfterReply,sendComment,save,generatedComments,userCommentsFor};
+const old={render,postHTML,commentHTML,findComment,fanReplyOptions,fanAfterReply,sendComment,openNotice,txt,save,generatedComments,userCommentsFor};
+txt=function(s){return old.txt(s).replaceAll('{group}',R.group||'')};
+const igPools=Object.fromEntries(Object.entries(COMMENT_IG_LINES).map(([k,b])=>[k,b.trim().split('\n').map(s=>{const i=s.indexOf('|');return {role:s.slice(0,i).replace('а','a'),text:s.slice(i+1)}})]));
 const hash=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,2166136261);
 function rootOf(p){let q=p;const seen=new Set();while(q?.source&&!seen.has(q.id)){seen.add(q.id);const parent=R.posts.find(x=>x.id===q.source);if(!parent)break;q=parent}return q||p}
 function topicFor(p){const root=rootOf(p),item=root.itemId||'generic';if(['earphone_case','coffee','mouse','hat','clothes'].includes(item))return item;if(item==='ad_product'||root.kind==='ad')return 'ad';if(item==='gift'||root.kind==='gift')return 'gift';if(item==='takeout'||root.kind==='takeout')return 'takeout';if(root.scriptPostId==='v5:post:4:21'&&root.body.includes(R.b))return 'detail';if(root.kind==='selfcrit')return 'selfcrit';if(root.kind==='defend'||root.scriptPostId==='v5:post:2:13')return 'interview';if(root.kind==='free')return 'daily';if(root.phase>=7)return /舞台|直拍/.test(root.body)?'stage':'warm';if(/粉籍|偏谁|哪家|偏心|阵营/.test(p.body)||root.kind==='history-analysis'||['v5:post:3:16','v5:post:3:17','v5:post:4:24'].includes(root.scriptPostId))return 'history';if(root.phase===5&&root.scriptPostId)return 'mood';if(root.phase===6&&root.scriptPostId)return 'warm';if(/采访|澄清|原问题|完整版|原话/.test(root.body))return 'interview';if(/舞台|直拍|唱|对视|和声|机位/.test(root.body))return 'stage';return 'daily'}
-function targets(p,topic){if(topic==='history')return {top:64,nested:48};if(['earphone_case','mouse','selfcrit','takeout'].includes(topic))return {top:42,nested:36};if(topic==='coffee'&&rootOf(p).phase<7)return {top:42,nested:34};if(['stage','detail','interview'].includes(topic))return {top:26,nested:20};return {top:16,nested:12}}
+function targets(p,topic){if(p.platform==='ig')return {top:16,nested:8};if(topic==='history')return {top:64,nested:48};if(['earphone_case','mouse','selfcrit','takeout'].includes(topic))return {top:42,nested:36};if(topic==='coffee'&&rootOf(p).phase<7)return {top:42,nested:34};if(['stage','detail','interview'].includes(topic))return {top:26,nested:20};return {top:16,nested:12}}
 function handleFor(role,index){let list=COMMENT_PEOPLE.filter(p=>p[2]===role);if(role==='archive'&&index%5===0)list=COMMENT_PEOPLE.filter(p=>p[2]==='data');if(!list.length)list=COMMENT_PEOPLE.filter(p=>p[2]==='daily');return list[Math.abs(index)%list.length][0]}
 function persona(handle){const p=people[handle]||{name:FANS[handle]?.name||handle,role:'daily'};return {...p,role:FANS[handle]?.role||p.role}} 
 function inWorld(text){return !/(第[一二三四五六七八九十0-9]+章|剧本|剧情|玩家|隐藏任务|触发.{0,4}结局|系统|社保|考编|我宣布.{0,8}CP粉|尊重.{0,8}立场|理性看待|我站在.{0,8}一边)/.test(text)}
@@ -956,7 +1093,7 @@ function timeBase(p){return Number(p.storyAt||p.at)||R.storyEpoch}
 function ownRow(c){return c.own||Object.values(R.accounts).some(a=>a.handle===c.handle)}
 function hasOwn(c){return ownRow(c)||(c.replies||[]).some(hasOwn)}
 function originalRows(p){let rows=R.comments[p.id]?.length?R.comments[p.id]:p.scriptPostId&&USER_V5.posts.some(x=>x.id===p.scriptPostId)?old.userCommentsFor(p):[];const unique=new Map();for(const c of rows){const previous=unique.get(c.id);if(!previous){unique.set(c.id,c);continue}const replies=[...new Map([...(previous.replies||[]),...(c.replies||[])].map(r=>[r.id,r])).values()];unique.set(c.id,{...(hasOwn(c)?c:previous),replies})}rows=[...unique.values()];if(isNodePost(p)){let eligible=rows.filter(c=>!ownRow(c));if(eligible.length<2&&p.scriptPostId){const source=old.userCommentsFor(p);rows=[...rows,...source.filter(c=>!rows.some(x=>x.id===c.id))];eligible=rows.filter(c=>!ownRow(c))}eligible.slice(0,2).forEach((c,i)=>c.interactionNode='fan-node:'+p.phase+':'+i)}return rows}
-function nodeText(p,idx){const topic=topicFor(p);if(p.phase===0)return idx?'最后那个ending 我睡不着了 谁懂':'姐妹你看回放还是去现场啦 我又刷精神了';if(p.phase===1){if(topic==='coffee')return idx?'店名呢！我真的打算买':'先问冰的热的 还有甜不甜';if(topic==='mouse')return idx?'求型号 求型号':'这个色好看诶 握着怎么样';return idx?'什么款啊 你要是不记得我就先蹲着':'这个颜色看着挺顺眼的'}if(p.phase===2)return idx?'我刚只看了剪出来那段 行我补课去':'谢谢 我刚解释得快冒烟了';if(p.phase===3)return idx?'这条在夸谁 我有点没看懂':'我就想知道你今天又看了哪段';if(p.phase===4)return idx?'哪一场能看得清楚啊 我也想看':'你也在看这个小动作 我以为只有我';if(p.phase===5)return idx?'好 我也蹭一点你的开心':'什么好事 分我一点';if(p.phase===6)return idx?'这句话我先存一下':'今天这句也太 那个了 我打字都慢下来';return idx?'见到谁啦 不方便说我就不问了':'你去线下了吗！还是和朋友出去啦'}
+function nodeText(p,idx){const topic=topicFor(p);if(topic==='takeout')return idx?'我先问饭好不好吃 你们别光顾着吵':'两份？你们这顿怎么分的ㅋㅋㅋ';if(p.phase===0)return idx?'最后那个ending 我睡不着了 谁懂':'姐妹你看回放还是去现场啦 我又刷精神了';if(p.phase===1){if(topic==='coffee')return idx?'店名呢！我真的打算买':'先问冰的热的 还有甜不甜';if(topic==='mouse')return idx?'求型号 求型号':'这个色好看诶 握着怎么样';return idx?'什么款啊 你要是不记得我就先蹲着':'这个颜色看着挺顺眼的'}if(p.phase===2)return idx?'我刚只看了剪出来那段 行我补课去':'谢谢 我刚解释得快冒烟了';if(p.phase===3)return idx?'这条在夸谁 我有点没看懂':'我就想知道你今天又看了哪段';if(p.phase===4)return idx?'哪一场能看得清楚啊 我也想看':'你也在看这个小动作 我以为只有我';if(p.phase===5)return idx?'好 我也蹭一点你的开心':'什么好事 分我一点';if(p.phase===6)return idx?'这句话我先存一下':'今天这句也太 那个了 我打字都慢下来';return idx?'见到谁啦 不方便说我就不问了':'你去线下了吗！还是和朋友出去啦'}
 function softenEvidence(text,p){const root=rootOf(p);if(p.source&&root.body){/* Quoted threads only discuss the visible parent; no invented prior choices. */}
 return txt(text)}
 function answerFor(c,topic,i){const text=c.text;if(/从哪首|听哪首|开始听|推荐/.test(text)&&['stage','detail'].includes(topic))return ['我也想问 先蹲个推荐','我也刚来 等一个带路的'][i%2];
@@ -975,39 +1112,54 @@ if(topic==='detail')return ['我也在看这里','你一说我又点开了','我
 if(topic==='stage')return ['我又点回开头了','我也不关了 再看一遍','这句我刚才也想发','我先把手上的事放一下再看'][i%4];
 if(topic==='history')return ['你先把上面那句看完','不是 这句又怎么了','我刚回来 你们还在聊啊','？'][i%4];if(topic==='interview')return ['我也去补完再回来','等我看完再回你','你看完了再打字啊','刚补完 我接上了'][i%4];if(topic==='selfcrit')return ['我再看一遍 等我','等一下 你指的是哪一下','我先看完你俩再吵','我刚看错你后半句了'][i%4];return (COMMENT_REPLY_LINES[topic]||COMMENT_REPLY_LINES.daily)[i%(COMMENT_REPLY_LINES[topic]||COMMENT_REPLY_LINES.daily).length]}
 function threadRoot(roots,topic,g){const anchors={stage:[/对上|对视|他俩|一起笑/,/睡|重播|重播|循环/],earphone_case:[/眼熟/,/真的不能嗑吗/],coffee:[/没开口|同款|预判/,/好喝|上班|明天/],mouse:[/DPI|显微镜|数码/,/颜色|配色/],interview:[/嗑|眼神/,/解释|谢谢/],history:[/认领|偏哪边|踢皮球/,/粉籍|填表|选秀/,/截图|原帖/,/先旁听|路过|看热闹|上网/],selfcrit:[/懂不懂|批|懂他/,/帅|好看|脸/],ad:[/不嗑/],gift:[/保密|记录|藏|发现/],takeout:[/筷子|距离/,/嗑|分析/],mood:[/好事|加班/],detail:[/原来|仔细|观察/],warm:[/五分钟|手机/],daily:[/睡|分钟/]};const re=(anchors[topic]||anchors.daily)[g];return re?roots.find(c=>re.test(c.text)):null}
-function buildLibrary(p){const topic=topicFor(p),spec=targets(p,topic),root=rootOf(p),seed=hash(p.id),pool=pools[topic]||pools.daily,existing=originalRows(p),out=[],used=new Set();
+function buildLibrary(p){const topic=topicFor(p),spec=targets(p,topic),root=rootOf(p),seed=hash(p.id),pool=p.platform==='ig'?(igPools[topic]||igPools.daily):(pools[topic]||pools.daily),existing=originalRows(p),out=[],used=new Set();
 const nodes=existing.filter(c=>c.interactionNode).slice(0,2);for(const c of nodes){const copy={...c,text:hasOwn(c)?c.text:nodeText(p,out.length),replies:(c.replies||[]).map(x=>({...x})),v6:true};out.push(copy);used.add(copy.text)}
 // Keep conversations that the player has actually taken part in, including their original parent wording.
 for(const c of existing){if(nodes.some(n=>n.id===c.id))continue;if(hasOwn(c)){out.push({...c,text:inWorld(c.text)?c.text:'我刚才那句打得乱七八糟的 你先看原帖',replies:(c.replies||[]).map(r=>({...r,text:ownRow(r)||inWorld(r.text)?r.text:'我回去看一眼再来'}))});used.add(c.text)}}
-let k=0;while(out.filter(c=>!ownRow(c)).length<spec.top&&k<pool.length*2){const i=k++,entry=pool[(i+seed%pool.length)%pool.length];let text=softenEvidence(entry.text,p);if(/你刚才|你昨天|你上次|我刚才语气|刚才说走的人|我那句|我不是这意思|你再读一遍/.test(text))continue;if(/翻出来|又翻/.test(text)&&R.storyEpoch+(storyDay()-1)*86400000-timeBase(root)<7*86400000)continue;if(used.has(text)||out.some(c=>c.id===p.id+':v6:'+i))continue;const role=entry.role,handle=handleFor(role,Math.floor(seed/97)+i);const c={id:p.id+':v6:'+i,handle,role,text,likes:1+hash(p.id+':like:'+i)%Math.max(12,Math.min(170,16+Number(p.phase||0)*15)),at:timeBase(p)+(i+1)*60000,replies:[],generated:true,v6:true};
-if(topic==='stage'&&p.phase===0&&/最喜欢|转身/.test(text)&&!out.some(c=>c.presetKey==='exam'))c.presetKey='exam';if(['earphone_case','coffee','mouse'].includes(topic)&&/求链接|求型号|求店名|求款/.test(text))c.presetKey='item-question';if(topic==='history'&&/偏哪边|都喜欢|哪家/.test(text)&&!out.some(c=>c.presetKey==='affiliation'))c.presetKey='affiliation';out.push(c);used.add(text)}
+if(topic==='takeout'&&hash(p.id)%3===0){const evidence=R.posts.find(q=>!q.own&&q.accountKey==='b'&&q.itemId==='takeout'&&timeBase(q)<timeBase(p));const template=evidence?'{b}公开那条也晒了吃的 这是同一家吗 我没认出来':'这家有没有人公开提过啊 {b}提过吗 我先问问 不敢认';const id=p.id+':food-guess',a=handleFor('cp',seed),b=handleFor('b',seed);out.push({id,handle:a,role:'cp',text:txt(template),template,likes:5,at:timeBase(p)+4*60000,presetKey:'takeout',evidencePostIds:evidence?[evidence.id]:[],replies:[{id:id+':r1',handle:b,role:'b',text:'店都还没认出来就开始叫人了是吧',replyToId:id,replyTo:a,likes:3,at:timeBase(p)+5*60000,v6:true},{id:id+':r2',handle:a,role:'cp',text:'我问个有没有 你倒是先替店接话了ㅋㅋㅋ',replyToId:id+':r1',replyTo:b,likes:2,at:timeBase(p)+6*60000,v6:true}],generated:true,v6:true});used.add(txt(template))}
+let k=0;while(out.filter(c=>!ownRow(c)).length<spec.top&&k<pool.length*2){const i=k++,entry=pool[(i+seed%pool.length)%pool.length];let text=softenEvidence(entry.text,p);if(/你刚才|你昨天|你上次|我刚才语气|刚才说走的人|我那句|我不是这意思|你再读一遍/.test(text))continue;if(/翻出来|又翻/.test(text)&&R.storyEpoch+(storyDay()-1)*86400000-timeBase(root)<7*86400000)continue;if(used.has(text)||out.some(c=>c.id===p.id+':v6:'+i))continue;const role=entry.role,handle=handleFor(role,Math.floor(seed/97)+i);const c={id:p.id+':v6:'+i,handle,role,text,template:entry.text,likes:1+hash(p.id+':like:'+i)%Math.max(12,Math.min(170,16+Number(p.phase||0)*15)),at:timeBase(p)+(i+1)*60000,replies:[],generated:true,v6:true};
+if(topic==='takeout'&&/两份|谁|筷子/.test(text)&&!out.some(c=>c.presetKey==='takeout'))c.presetKey='takeout';if(topic==='stage'&&p.phase===0&&/最喜欢|转身/.test(text)&&!out.some(c=>c.presetKey==='exam'))c.presetKey='exam';if(['earphone_case','coffee','mouse'].includes(topic)&&/求链接|求型号|求店名|求款/.test(text))c.presetKey='item-question';if(topic==='history'&&/偏哪边|都喜欢|哪家/.test(text)&&!out.some(c=>c.presetKey==='affiliation'))c.presetKey='affiliation';out.push(c);used.add(text)}
 let replies=out.reduce((n,c)=>n+(c.replies||[]).length,0);const lines=COMMENT_REPLY_LINES[topic]||COMMENT_REPLY_LINES.daily,convos=COMMENT_THREADS[topic]||COMMENT_THREADS.daily;const roots=out.filter(c=>!ownRow(c)&&c.v6&&!hasOwn(c));
 // A few actual exchanges, rather than making every comment an argument.
-const threadCount=Math.min(convos.length,Math.max(1,Math.floor(spec.nested/12)));for(let g=0;g<threadCount;g++){const c=threadRoot(roots,topic,g);if(!c)continue;let replyTo=c.id;convos[g].forEach((text,j)=>{const id=c.id+':chain:'+g+':'+j;let handle=j===1?c.handle:handleFor(j===2?'passer':(persona(c.handle).role==='b'?'cp':'b'),seed+j+g);if(j!==1&&handle===c.handle)handle=handleFor('passer',seed+j+g+1);c.replies.push({id,handle,role:persona(handle).role,text:txt(text),replyToId:replyTo,replyTo:j?c.replies.at(-1).handle:c.handle,likes:2+hash(id)%21,at:Math.max(timeBase(p),c.at)+(j+2)*60000,replies:[],generated:true,v6:true});replyTo=id;replies++})}
-let n=0;while(replies<spec.nested&&n<spec.nested*3){const i=n++,c=roots[(seed+i*11)%roots.length];if(!c)break;let text=answerFor(c,topic,i);
+const threadCount=p.platform==='ig'?0:Math.min(convos.length,Math.max(1,Math.floor(spec.nested/12)));for(let g=0;g<threadCount;g++){const c=threadRoot(roots,topic,g);if(!c)continue;let replyTo=c.id;convos[g].forEach((text,j)=>{const id=c.id+':chain:'+g+':'+j;let handle=j===1?c.handle:handleFor(j===2?'passer':(persona(c.handle).role==='b'?'cp':'b'),seed+j+g);if(j!==1&&handle===c.handle)handle=handleFor('passer',seed+j+g+1);c.replies.push({id,handle,role:persona(handle).role,text:txt(text),replyToId:replyTo,replyTo:j?c.replies.at(-1).handle:c.handle,likes:2+hash(id)%21,at:Math.max(timeBase(p),c.at)+(j+2)*60000,replies:[],generated:true,v6:true});replyTo=id;replies++})}
+let n=0;while(replies<spec.nested&&n<spec.nested*3){const i=n++,c=roots[(seed+i*11)%roots.length];if(!c)break;let text=p.platform==='ig'?(['我也想问这个','你这么说我也想试了','ㅋㅋㅋ 这句我接上了','我也来看看'][i%4]):answerFor(c,topic,i);
 if(c.replies.some(r=>r.text===txt(text)))continue;const handle=handleFor(['daily','passer','archive','cp','a','b','group','newfan'][i%8],Math.floor(seed/41)+i),id=c.id+':r6:'+i;c.replies.push({id,handle,role:persona(handle).role,text:txt(text),replyToId:c.id,replyTo:c.handle,likes:hash(id)%18,at:c.at+(c.replies.length+2)*60000,replies:[],generated:true,v6:true});replies++}
 return [...new Map(out.map(c=>[c.id,c])).values()].sort((a,b)=>a.at-b.at)}
-function library(p){if(p.own&&p.scope==='private')return (R.comments[p.id]||[]).filter(hasOwn);if(p.commentEdition===EDITION&&Array.isArray(R.comments[p.id]))return R.comments[p.id];const key=p.id+'|'+p.itemId+'|'+(R.comments[p.id]||[]).filter(hasOwn).map(c=>c.id).join(',');if(!cache.has(key))cache.set(key,buildLibrary(p));return cache.get(key)}
-function normalizeTimes(p,rows){rows.forEach((c,i)=>{if(!Number.isFinite(c.at)){c.at=timeBase(p)+(i+1)*60000;c.repairedMissingTime=true}(c.replies||[]).forEach((r,j)=>{if(!Number.isFinite(r.at)){r.at=c.at+(j+1)*60000;r.repairedMissingTime=true}})})}
+function library(p){if(p.own&&p.scope==='private')return (R.comments[p.id]||[]).filter(hasOwn);if(p.commentEdition===EDITION&&Array.isArray(R.comments[p.id]))return R.comments[p.id];const key=p.id+'|'+p.platform+'|'+R.a+'|'+R.b+'|'+R.group+'|'+p.itemId+'|'+(R.comments[p.id]||[]).filter(hasOwn).map(c=>c.id).join(',');if(!cache.has(key))cache.set(key,buildLibrary(p));return cache.get(key)}
+function normalizeTimes(p,rows){rows.forEach((c,i)=>{if(c.template&&!ownRow(c))c.text=txt(c.template);if(!Number.isFinite(c.at)){c.at=timeBase(p)+(i+1)*60000;c.repairedMissingTime=true}(c.replies||[]).forEach((r,j)=>{if(!Number.isFinite(r.at)){r.at=c.at+(j+1)*60000;r.repairedMissingTime=true}})})}
 function ensure(p){if(!p)return;if(p.commentEdition===EDITION){normalizeTimes(p,R.comments[p.id]||[]);return;}const previous=R.comments[p.id]||[];R.commentArchivesV6??={};if(previous.length&&!R.commentArchivesV6[p.id])R.commentArchivesV6[p.id]=previous.filter(c=>!ownRow(c));R.comments[p.id]=library(p);normalizeTimes(p,R.comments[p.id]);p.commentEdition=EDITION}
 generatedComments=function(p,offset=0,count=12){if(p.commentEdition===EDITION)return [];return library(p).slice(offset,offset+count)};
 userCommentsFor=function(p){if(p.commentEdition===EDITION)return [];return library(p)};
-stanceFanComments=function(){return []};
+stanceFanComments=function(p){if(p.platform!=='x'||p.scope!=='public'||p.kind==='free')return [];const topic=topicFor(p);if(!['history','selfcrit','interview','takeout'].includes(topic))return [];const targets=nameEvidence(p),lines=topic==='interview'?['这不就是把话听完再开麦吗','夸一句{b}之前还得先查粉籍？','你们在这吵 我先去看原片']:topic==='selfcrit'?['她也没说这场不好吧','别只截前半句 我字都替你们看累了','我只想夸脸 你们先讲']:['我就看这条写了什么 谁在给她出题','喜欢两个人就必须嗑吗 我问问','我看你们比楼主还想知道她喜欢谁'];return ['a','b','cp'].map((role,i)=>({id:p.id+':stance10:'+i,handle:handleFor(role,hash(p.id)+i),role,text:txt(lines[i]),template:lines[i],likes:2+i,at:timeBase(p)+(12+i)*60000,replies:[],generated:true,v6:true}))};
 seedFanMemories=function(p){if(p.phase>=7)return;const records=(R.fanInteractions||[]).filter(x=>x.phase<p.phase&&R.posts.some(q=>q.id===x.postId));const seen=new Set();for(const rec of records){if(seen.size>=1)break;if(seen.has(rec.fanId))continue;const prior=R.posts.find(q=>q.id===rec.postId);if(!prior||timeBase(prior)>=timeBase(p))continue;const key=p.phase+':'+rec.fanId;R.fanMemorySeen??=[];if(R.fanMemorySeen.includes(key))continue;R.fanMemorySeen.push(key);seen.add(rec.fanId);R.comments[p.id]??=[];R.comments[p.id].push({id:p.id+':memory6:'+rec.fanId,handle:rec.fanId,role:persona(rec.fanId).role,text:'怎么又刷到你了哈哈 我先点个赞',memoryOfPost:prior.id,memoryInteractionId:rec.id,likes:2,at:Math.max(timeBase(p),rec.at)+60000,replies:[],generated:true,v6:true})}};
 // Stable helpers are deliberately limited to comments and their counters.
-postHTML=function(p){const rows=library(p);return old.postHTML(p).replace(/◯ \d+ 评论/,'◯ '+rows.length+' 评论')};
+postHTML=function(p){rewriteFanPost(p);const rows=library(p);let html=old.postHTML(p).replace(/◯ \d+ 评论/,'◯ '+rows.length+' 评论');if(!p.own&&!p.accountKey){html=html.replace(/<span class="avatar">[^<]*<\/span>/,fanAvatar(p.handle)).replace('<b>'+esc(p.handle)+'</b>','<b>'+esc(txt(persona(p.handle).name))+'</b>').replace('@'+esc(p.handle)+' ·','@'+esc(alias(p.handle))+' ·')}return html};
 findComment=function(postId,id){const p=R.posts.find(p=>p.id===postId);if(p)ensure(p);return old.findComment(postId,id)};
-function renderRow(c,postId,depth,children,visited){if(visited.has(c.id))return '';visited.add(c.id);const me=ownRow(c),person=persona(c.handle),label=me?'你':person.name;const desc=me?'':({archive:'考据粉',station:'拍图粉',newfan:'新粉',data:'物料粉'}[person.role]||roleName(person.role));const rows=children.get(c.id)||[];let h='<div class="'+(depth?'reply':'comment')+'" id="comment-'+esc(c.id)+'" data-depth="'+depth+'"><div class="handle">'+esc(txt(label))+' @'+esc(c.handle)+' · '+esc(desc)+' · '+stamp(c.at)+'</div><div>'+(c.replyTo?'<small>回复 @'+esc(c.replyTo)+'：</small>':'')+esc(txt(c.text))+'</div><div class="actions"><button data-comment-like="'+esc(c.id)+'" data-post="'+esc(postId)+'">♡ '+((c.likes||0)+(R.likes.includes('comment:'+c.id)?1:0))+'</button><button data-comment-reply="'+esc(c.id)+'" data-post="'+esc(postId)+'">回复</button></div>';if(depth<5)h+=rows.map(r=>renderRow(r,postId,depth+1,children,visited)).join('');return h+'</div>'}
-commentHTML=function(c,postId,nested=false){if(nested)return old.commentHTML(c,postId,true);const children=new Map(),replies=c.replies||[],known=new Set([c.id,...replies.map(r=>r.id)]);for(const r of replies){const parent=known.has(r.replyToId)&&r.replyToId!==r.id?r.replyToId:c.id;if(!children.has(parent))children.set(parent,[]);children.get(parent).push(r)}const count=replyLimits.get(c.id)||4,shown=replies.slice(0,count),shownIds=new Set(shown.map(r=>r.id)),filtered=new Map();for(const [id,rs]of children)filtered.set(id,rs.filter(r=>shownIds.has(r.id)));let html=renderRow(c,postId,0,filtered,new Set());if(replies.length>count)html+='<button class="secondary" style="margin:6px 15px" data-comment-more-replies="'+esc(c.id)+'">查看其余 '+(replies.length-count)+' 条回复</button>';return html};
-function refreshThread(){const p=R.posts.find(p=>p.id===selected),section=E('app').querySelector('section[aria-label="当前帖子的评论"]');if(!p||!section)return;ensure(p);const all=R.comments[p.id]||[],rows=[...all],limit=limits.get(p.id)||10;if(sortMode==='new')rows.sort((a,b)=>b.at-a.at);else rows.sort((a,b)=>Number(!!b.interactionNode)-Number(!!a.interactionNode)||(b.likes||0)-(a.likes||0)||a.at-b.at);const visible=rows.slice(0,limit);const latestOwn=rows.filter(ownRow).sort((a,b)=>b.at-a.at)[0];if(latestOwn&&!visible.some(c=>c.id===latestOwn.id))visible.push(latestOwn);if(selectedParent){const focus=old.findComment(p.id,selectedParent);if(focus){if(!visible.some(c=>c.id===focus.parent.id))visible.push(focus.parent);const at=(focus.parent.replies||[]).findIndex(r=>r.id===selectedParent);if(at>=0)replyLimits.set(focus.parent.id,Math.max(replyLimits.get(focus.parent.id)||4,at+1))}}const remaining=all.length-visible.length;section.innerHTML='<div class="actions" style="padding:12px 15px"><b>'+all.length+' 条评论</b><button data-comment-sort="hot" '+(sortMode==='hot'?'disabled':'')+'>热评</button><button data-comment-sort="new" '+(sortMode==='new'?'disabled':'')+'>最新</button></div>'+visible.map(c=>commentHTML(c,p.id)).join('')+(remaining>0?'<button class="secondary" style="margin:15px" data-comment-more="'+esc(p.id)+'">查看更多评论 · '+remaining+'</button>':'')}
+function alias(h){if(Object.values(R.accounts).some(a=>a.handle===h))return h;const parts=['paper','velvet','moon','peach','room','mint','cloud','navy','mellow','film','night','soft'];const n=hash(h);R.fanAliases??={};if(R.fanAliases[h])return R.fanAliases[h];const base=parts[n%12]+'.'+parts[Math.floor(n/12)%12]+(n%4===0?'_':'');let value=base,i=0;while(Object.entries(R.fanAliases).some(([key,v])=>key!==h&&v===value))value=base+'_'+String.fromCharCode(97+(n+i++)%26);return R.fanAliases[h]=value}
+function fanAvatar(h){const n=hash(h),colors=['#547e9b','#a76c87','#7b81b1','#a38854','#729582','#987456','#6c929e','#946b92'];const emoji={pairnote_08:'🍓',slowframe_12:'🔎',dayoff_61:'🐈‍⬛',bluehour_27:'🧸'}[h],name=txt(persona(h).name),initial=[...name.trim()][0]||alias(h)[0].toUpperCase();return '<span role="img" aria-label="'+esc(name)+'头像" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex-shrink:0;border-radius:50%;background:'+colors[n%colors.length]+';color:#fff;font-weight:700;font-size:'+(emoji?'20':'14')+'px">'+esc(emoji||initial)+'</span>'}
+function rowCard(c,postId,ig=false){const me=ownRow(c),name=me?'你':txt(persona(c.handle).name),like=(c.likes||0)+(R.likes.includes('comment:'+c.id)?1:0);return '<div class="comment" style="margin:0;border-left:0;padding:12px 15px" id="comment-'+esc(c.id)+'"><div style="display:flex;gap:9px">'+(me?avatar(R.posts.find(p=>p.id===postId)?.platform==='ig'?'alt':'x'):fanAvatar(c.handle))+'<div style="min-width:0;flex:1"><div class="handle"><b>'+esc(name)+'</b> @'+esc(alias(c.handle))+' · '+stamp(c.at)+'</div><div style="white-space:pre-wrap;overflow-wrap:anywhere">'+(c.replyTo?'<small>回复 @'+esc(alias(c.replyTo))+'：</small>':'')+esc(txt(c.template||c.text))+'</div><div class="actions"><button data-comment-like="'+esc(c.id)+'" data-post="'+esc(postId)+'">♡ '+like+'</button><button data-comment-reply="'+esc(c.id)+'" data-post="'+esc(postId)+'">回复</button>'+(!ig?'<button data-comment-focus="'+esc(c.id)+'">查看对话</button><button data-quote="'+esc(postId)+'">引用</button>':'')+'</div></div></div></div>'}
+function repliesToggle(root,postId,ig){const replies=root.replies||[];if(!replies.length)return '';const open=expandedReplies.has(root.id);let h='<button style="color:#58a6ff;margin:4px 15px" data-comment-toggle="'+esc(root.id)+'">'+(open?'收起回复':'显示 '+replies.length+' 条回复')+'</button>';if(open){const count=replyLimits.get(root.id)||8;h+=replies.slice(0,count).map(r=>rowCard(r,postId,ig)).join('');if(replies.length>count)h+='<button class="secondary" data-comment-more-replies="'+esc(root.id)+'">更多回复</button>'}return h}
+commentHTML=function(c,postId){const ig=R.posts.find(p=>p.id===postId)?.platform==='ig';return rowCard(c,postId,ig)+repliesToggle(c,postId,ig)};
+function refreshThread(){const p=R.posts.find(p=>p.id===selected),section=E('app').querySelector('section[aria-label="当前帖子的评论"]');if(!p||!section)return;ensure(p);const ig=p.platform==='ig',all=R.comments[p.id]||[],rows=[...all],limit=limits.get(p.id)||10;const title=E('app').querySelector('h1');if(title)title.textContent=ig?'评论':focusedReply?'对话':'帖子';const form=E('commentForm');if(form)form.style.paddingBottom='calc(12px + env(safe-area-inset-bottom, 0px))';
+if(!ig&&focusedReply){const found=old.findComment(p.id,focusedReply);if(found){const root=found.parent,target=found.comment,path=[];let current=target;const visited=new Set();while(current&&!visited.has(current.id)){visited.add(current.id);path.unshift(current);if(current.id===root.id)break;current=[root,...(root.replies||[])].find(x=>x.id===current.replyToId)||root}const direct=(root.replies||[]).filter(r=>r.replyToId===target.id||(!r.replyToId&&target.id===root.id));section.innerHTML='<button class="secondary" data-comment-focus-back="1">‹ 返回评论</button>'+path.slice(-3).map(c=>rowCard(c,p.id,false)).join('')+'<div style="color:#8ba0af;padding:10px 15px">回复</div>'+direct.map(c=>rowCard(c,p.id,false)+repliesToggle({id:c.id,replies:(root.replies||[]).filter(r=>r.replyToId===c.id)},p.id,false)).join('');return}focusedReply=null}
+if(sortMode==='new')rows.sort((a,b)=>b.at-a.at);else rows.sort((a,b)=>Number(!!b.interactionNode)-Number(!!a.interactionNode)||(b.likes||0)-(a.likes||0)||a.at-b.at);const visible=rows.slice(0,limit),own=rows.filter(ownRow).sort((a,b)=>b.at-a.at)[0];if(own&&!visible.some(c=>c.id===own.id))visible.push(own);if(selectedParent){const f=old.findComment(p.id,selectedParent);if(f&&!visible.some(c=>c.id===f.parent.id))visible.push(f.parent)}const remaining=all.length-visible.length;section.innerHTML='<div class="actions" style="padding:12px 15px"><b>'+all.length+' 条评论</b>'+(ig?'<button data-comment-close="1">关闭</button>':'')+'<button data-comment-sort="hot" '+(sortMode==='hot'?'disabled':'')+'>热评</button><button data-comment-sort="new" '+(sortMode==='new'?'disabled':'')+'>最新</button></div>'+visible.map(c=>commentHTML(c,p.id)).join('')+(remaining>0?'<button class="secondary" style="margin:15px" data-comment-more="'+esc(p.id)+'">查看更多评论 · '+remaining+'</button>':'')}
+function focusComment(id,reply){focusStack.push({id:focusedReply,scroll:E('app').scrollTop});focusedReply=id;refreshThread();E('app').scrollTop=0;if(reply){selectedParent=id;showFanReplyPanel(selected,id);E('commentInput')?.focus({preventScroll:true})}}
+openNotice=function(n){focusedReply=null;if(n.postId&&n.parentId){const p=R.posts.find(p=>p.id===n.postId);if(p){ensure(p);const f=old.findComment(p.id,n.parentId);if(f){if(p.platform==='x')focusedReply=n.parentId;else{expandedReplies.add(f.parent.id);replyLimits.set(f.parent.id,(f.parent.replies||[]).length)}}}}old.openNotice(n);if(view==='thread')refreshThread()};
+function backComment(){const input=E('commentInput');if(input&&!input.value.trim()){selectedParent=null;input.placeholder='发表你的评论…';if(E('fanReplyPanel'))E('fanReplyPanel').hidden=true}const last=focusStack.pop();focusedReply=last?.id||null;refreshThread();E('app').scrollTop=last?.scroll||0}
+
 render=function(){if(view==='thread'){const p=R.posts.find(p=>p.id===selected);if(p)ensure(p)}old.render();if(view==='thread')refreshThread()};
-E('app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;if(d.commentMore){limits.set(d.commentMore,(limits.get(d.commentMore)||10)+10);refreshThread()}else if(d.commentSort){sortMode=d.commentSort;refreshThread()}else if(d.commentMoreReplies){replyLimits.set(d.commentMoreReplies,(replyLimits.get(d.commentMoreReplies)||4)+12);refreshThread()}else if(d.commentReply){const p=R.posts.find(p=>p.id===d.post);if(p)ensure(p)}});
-sendComment=function(postId,body,parentId,option=null){const p=R.posts.find(p=>p.id===postId);if(p)ensure(p);old.sendComment(postId,body,parentId,option);if(view==='thread'){limits.set(postId,limits.get(postId)||10);if(parentId){const found=old.findComment(postId,parentId);if(found)replyLimits.set(found.parent.id,(found.parent.replies||[]).length+6)}refreshThread()}};
+E('app').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset,p=R.posts.find(p=>p.id===selected);if(d.commentFocusBack||(d.action==='back'&&view==='thread'&&focusedReply)){e.stopImmediatePropagation();backComment();return}if(d.commentFocus){e.stopImmediatePropagation();focusComment(d.commentFocus,false);return}if(d.commentReply&&p?.platform==='x'){e.stopImmediatePropagation();focusComment(d.commentReply,true);return}if(d.commentToggle){e.stopImmediatePropagation();if(expandedReplies.has(d.commentToggle))expandedReplies.delete(d.commentToggle);else expandedReplies.add(d.commentToggle);refreshThread();return}if(d.commentClose){e.stopImmediatePropagation();focusedReply=null;go('ig');return}if(d.open){focusedReply=null;focusStack.length=0}if(d.commentMore){e.stopImmediatePropagation();limits.set(d.commentMore,(limits.get(d.commentMore)||10)+10);refreshThread()}else if(d.commentSort){e.stopImmediatePropagation();sortMode=d.commentSort;refreshThread()}else if(d.commentMoreReplies){e.stopImmediatePropagation();replyLimits.set(d.commentMoreReplies,(replyLimits.get(d.commentMoreReplies)||8)+12);refreshThread()}},true);
+
+sendComment=function(postId,body,parentId,option=null){const p=R.posts.find(p=>p.id===postId);if(p)ensure(p);old.sendComment(postId,body,parentId,option);if(p)maybeSpreadDiscussion(p);if(view==='thread'){limits.set(postId,limits.get(postId)||10);if(parentId){const found=old.findComment(postId,parentId);if(found)replyLimits.set(found.parent.id,(found.parent.replies||[]).length+6)}refreshThread()}};
 const casualResponses={source:['存了 我去看','谢谢 我补课去了'],quiet:['行 那我等你更','我先蹲着'],shared:['我也在那儿倒回去了','懂啊啊啊'],careful:['好 我再看一眼','行 我刚才说早了'],taste:['好 记下了','你这么说我开始馋了'],privacy:['好 不问了','行 那先不问'],later:['我先蹲着','有了喊我一下'],look:['是吧 颜色先把我骗进来了','好看是真的'],use:['好 我再蹲一下后续','有参考到 谢谢'],daily:['哈哈哈哈好','懂了'],color:['这个色是挺耐看的','同感'],warm:['你也是啊','收到 谢谢回我'],context:['我就说怎么没接上','我再去看一下'],boundary:['好 我先看视频','行 我刚才扯远了'],balanced:['好好好 我不替你选了','那一起看'],biasB:['行 我找这段去','懂了'],biasA:['好 我也去重看','那我也来夸'],gentle:['这句我先存了','收到啦'],familiar:['来啦','我还在呢']};
-fanReplyOptions=function(p,c){const original=old.fanReplyOptions(p,c);if(original.length)return original.map((o,i)=>({...o,response:(casualResponses[o.effect]||['好 我先存了','哈哈哈收到'])[i%2]}));if(ownRow(c))return [];const key='comment-choice:'+c.id;if(R.nodeChoices?.[key])return [];let list=[];const topic=topicFor(p);if(c.presetKey==='exam')list=[['都喜欢 不让多选啊？','多选也行 但你得写满这一格'],['ending 就是ending','我都还没来得及出题！'],['那个转身 我倒回去好多次','啊这个我也看了 好吧算你懂']];else if(c.presetKey==='item-question'){list=topic==='coffee'?[['我再看一下店名 怕说错','好 我等你'],['先说口味吧 这杯不太甜','这句对我很重要 我先记着'],['我先把名字留给自己ㅋㅋㅋ','行 我去找别的喝']]:topic==='mouse'?[['型号我再确认一下','行 我先收藏'],['我主要喜欢这个颜色','懂 颜色把人骗进来再讲参数'],['握着挺舒服的 我再用几天试试','用久了喊我一下 我蹲']]:[['我再看一下具体是哪款','好 我先蹲着'],['普通耳机壳啦ㅋㅋㅋ','不普通 评论区已经给它开了三场会'],['先别认同款 我自己也没研究过','好 先问它会不会发黄']]}else if(c.presetKey==='affiliation')list=[['都喜欢啊','好 我白问了'],['这也要选吗ㅋㅋㅋ','有人已经替你选了 你去看看'],['你们先聊 我看视频去了','你等等 我也去']];return list.map(([text,response],i)=>({id:key+':'+i,nodeId:key,text,response,effect:'v6-casual',v6Topic:topic,v6Follow:[] }))};
-fanAfterReply=function(p,found,own,option){old.fanAfterReply(p,found,own,option);const job=R.commentJobs.find(j=>j.playerCommentId===own.id);if(!job)return;if(!option){job.respond=hash(own.id)%3===0;job.response='收到 谢谢回我';job.extra=false;return}job.extra=false;job.v6=true;job.response=option.response;job.v6Topic=topicFor(p);job.v6Effect=option.effect;job.v6Count=2+hash(option.id)%3;job.v6Parent=found.parent.id;job.v6Target=own.id;job.v6Tail=false};
+fanReplyOptions=function(p,c){if(topicFor(p)==='takeout'&&/两份|饭|粉籍|谁吃|筷子/.test(c.text)&&!ownRow(c)){const node=c.interactionNode||'food:'+c.id;if(R.nodeChoices?.[node])return [];return [['不是 吃个饭也要填粉籍问卷吗','我只是来问饭 他们已经问到户口了'],['好吃啊 我下次还点','菜名先给我 你们的架待会儿再看'],['你们聊 我饭真要凉了ㅋㅋㅋ','你先吃 我替你围观一会儿']].map(([text,response],i)=>({id:node+':food:'+i,nodeId:node,text,response,effect:'v6-casual'}))}const original=old.fanReplyOptions(p,c);if(original.length)return original.map((o,i)=>({...o,response:(casualResponses[o.effect]||['好 我先存了','哈哈哈收到'])[i%2]}));if(ownRow(c))return [];const key='comment-choice:'+c.id;if(R.nodeChoices?.[key])return [];let list=[];const topic=topicFor(p);if(topic==='takeout')list=[['不是 吃个饭也要填粉籍问卷吗','我只是问饭 他们已经问到你户口了'],['好吃啊 我下次还点','菜名先给我 你们的架待会儿再看'],['你们聊 我饭真要凉了ㅋㅋㅋ','你先吃 我替你围观一会儿']];else if(c.presetKey==='exam')list=[['都喜欢 不让多选啊？','多选也行 但你得写满这一格'],['ending 就是ending','我都还没来得及出题！'],['那个转身 我倒回去好多次','啊这个我也看了 好吧算你懂']];else if(c.presetKey==='item-question'){list=topic==='coffee'?[['我再看一下店名 怕说错','好 我等你'],['先说口味吧 这杯不太甜','这句对我很重要 我先记着'],['我先把名字留给自己ㅋㅋㅋ','行 我去找别的喝']]:topic==='mouse'?[['型号我再确认一下','行 我先收藏'],['我主要喜欢这个颜色','懂 颜色把人骗进来再讲参数'],['握着挺舒服的 我再用几天试试','用久了喊我一下 我蹲']]:[['我再看一下具体是哪款','好 我先蹲着'],['普通耳机壳啦ㅋㅋㅋ','不普通 评论区已经给它开了三场会'],['先别认同款 我自己也没研究过','好 先问它会不会发黄']]}else if(c.presetKey==='affiliation')list=[['我这主页怎么还得填单选题ㅋㅋㅋ','谁让你夸起来一点都不客气'],['今天谁帅我是谁家的','行 你的粉籍还带日更的'],['你先说你觉得我是哪边的','我说了你又不认'],['你们聊 我先看视频去了','你等等 带我一个']];return list.map(([text,response],i)=>({id:key+':'+i,nodeId:key,text,response,effect:'v6-casual',v6Topic:topic,v6Follow:[] }))};
+fanAfterReply=function(p,found,own,option){old.fanAfterReply(p,found,own,option);const job=R.commentJobs.find(j=>j.playerCommentId===own.id);if(!job)return;if(!option){job.respond=hash(own.id)%3===0;job.response=['？','哈哈哈哈','看到了ㅋㅋㅋ'][hash(own.id)%3];job.extra=false;return}job.extra=false;job.v6=true;job.response=option.response;job.v6Topic=topicFor(p);job.v6Effect=option.effect;job.v6Count=hash(option.id)%4;job.respond=job.v6Count>0;job.v6Parent=found.parent.id;job.v6Target=own.id;job.v6Tail=false};
 const originalJobsTick=commentJobsTick;
-commentJobsTick=function(){originalJobsTick();let changed=false;for(const job of R.commentJobs||[]){if(!job.v6||!job.done||job.v6Tail)continue;const p=R.posts.find(p=>p.id===job.postId);if(!p)continue;ensure(p);const found=old.findComment(job.postId,job.v6Parent);if(!found)continue;const first=found.parent.replies.find(r=>r.id===job.id+':fan');if(first)first.replyToId=job.v6Target;const lines=COMMENT_REPLY_LINES[job.v6Topic]||COMMENT_REPLY_LINES.daily;let parent=job.id+':fan';for(let i=1;i<job.v6Count;i++){const id=job.id+':follow:'+i;if(found.parent.replies.some(r=>r.id===id)){parent=id;continue}const role=['passer','daily','cp'][i%3],handle=handleFor(role,hash(job.id)+i);let text=lines[(hash(job.id)+i)%lines.length];if(job.v6Topic==='coffee')text=['我也蹲这个店名','好 我今天先喝水 钱包撑不住了','我再看看口味再决定'][i-1];else if(job.v6Topic==='earphone_case')text=['我先蹲链接 你们慢慢认','所以到底会不会发黄 我还在等这个','这楼我怎么又看到你了'][i-1];else if(job.v6Topic==='mouse')text=['我也等型号 不催','桌面没收拾好已经开始想买了','预算不够的我默默点个收藏'][i-1];else if(job.v6Topic==='history')text=['那你刚才还问半天','我只想知道视频在哪','我都吃完饭了 你们还在这儿'][i-1];else if(job.v6Topic==='warm')text=['我也来回一句 晚安','我回完也真去睡了','那明天有空再聊'][i-1];else if(job.v6Topic==='mood')text=['那我也来蹭点好心情','我今天也有件高兴的小事','不说了 我也去买点好吃的'][i-1];else if(job.v6Topic==='daily')text=['我也在看呢','哈哈哈哈这句我接上了','我先回个赞再走'][i-1];else if(['stage','detail'].includes(job.v6Topic))text=(job.v6Effect==='source'?['我也去看完再来','我刚点开了 先不聊','你们先聊 我还在看']:['原来你们也在看这儿','我又倒回去了一次','看完还是舍不得关'])[i-1];found.parent.replies.push({id,handle,role,text:txt(text),replyToId:parent,replyTo:i===1?job.fanId:found.parent.replies.at(-1).handle,likes:1,at:job.at+i*60000,replies:[],generated:true,v6:true});parent=id}job.v6Tail=true;changed=true;notify(p.platform==='ig'?'Instagram':'X','你的回复下有新留言',p.platform,p.id,job.v6Parent)}if(changed){save();if(view==='thread'&&!document.activeElement?.matches('input,textarea')){const pos=E('app').scrollTop;render();E('app').scrollTop=pos}}};
+commentJobsTick=function(){originalJobsTick();let changed=false;for(const job of R.commentJobs||[]){if(!job.v6||!job.done||job.v6Tail)continue;if(!job.respond||job.v6Count<1){job.v6Tail=true;changed=true;continue}const p=R.posts.find(p=>p.id===job.postId);if(!p)continue;ensure(p);const found=old.findComment(job.postId,job.v6Parent);if(!found)continue;const first=found.parent.replies.find(r=>r.id===job.id+':fan');if(first)first.replyToId=job.v6Target;const lines=COMMENT_REPLY_LINES[job.v6Topic]||COMMENT_REPLY_LINES.daily;let parent=job.id+':fan';for(let i=1;i<job.v6Count;i++){const id=job.id+':follow:'+i;if(found.parent.replies.some(r=>r.id===id)){parent=id;continue}const role=['passer','daily','cp'][i%3],handle=handleFor(role,hash(job.id)+i);let text=lines[(hash(job.id)+i)%lines.length];if(job.v6Topic==='coffee')text=['我也蹲这个店名','好 我今天先喝水 钱包撑不住了','我再看看口味再决定'][i-1];else if(job.v6Topic==='earphone_case')text=['我先蹲链接 你们慢慢认','所以到底会不会发黄 我还在等这个','这楼我怎么又看到你了'][i-1];else if(job.v6Topic==='mouse')text=['我也等型号 不催','桌面没收拾好已经开始想买了','预算不够的我默默点个收藏'][i-1];else if(job.v6Topic==='history')text=['那你刚才还问半天','我只想知道视频在哪','我都吃完饭了 你们还在这儿'][i-1];else if(job.v6Topic==='warm')text=['我也来回一句 晚安','我回完也真去睡了','那明天有空再聊'][i-1];else if(job.v6Topic==='mood')text=['那我也来蹭点好心情','我今天也有件高兴的小事','不说了 我也去买点好吃的'][i-1];else if(job.v6Topic==='daily')text=['我也在看呢','哈哈哈哈这句我接上了','我先回个赞再走'][i-1];else if(['stage','detail'].includes(job.v6Topic))text=(job.v6Effect==='source'?['我也去看完再来','我刚点开了 先不聊','你们先聊 我还在看']:['原来你们也在看这儿','我又倒回去了一次','看完还是舍不得关'])[i-1];if(p.platform==='ig')text=(job.v6Topic==='coffee'||job.v6Topic==='takeout'?['我也想问这家','看完我也饿了','我先存着 下次试试']:['我也来看看ㅋㅋ','这条我先记着','来点个赞'])[i-1];found.parent.replies.push({id,handle,role,text:txt(text),replyToId:parent,replyTo:i===1?job.fanId:found.parent.replies.at(-1).handle,likes:1,at:job.at+i*60000,replies:[],generated:true,v6:true});parent=id}job.v6Tail=true;changed=true;if(job.v6Count>1)notify(p.platform==='ig'?'Instagram':'X','你的回复下有新留言',p.platform,p.id,job.v6Parent)}if(changed){save();if(view==='thread'&&!document.activeElement?.matches('input,textarea')){const pos=E('app').scrollTop;render();E('app').scrollTop=pos}}};
+function maybeSpreadDiscussion(p){if(p.scope!=='public'||p.phase<3)return;const count=(R.fanInteractions||[]).filter(x=>x.postId===p.id).length;if(count<3||hash(p.id)%3!==0)return;R.commentHotEvents??=[];if(R.commentHotEvents.includes(p.id))return;R.commentHotEvents.push(p.id);const id=p.id+':conversation-quote';if(R.posts.some(q=>q.id===id))return;const q={id,platform:'x',handle:handleFor('passer',hash(id)),role:'passer',kind:'conversation-quote',source:p.id,itemId:p.itemId,phase:p.phase,scope:'public',body:p.platform==='ig'?'我点进去本来想问这张图，结果在评论区看了半天。原帖放这儿，你们自己看。':'这条我点开原文了。有人看舞台，有人忙着问她偏谁，我先坐旁边。',storyAt:tickTime(),at:Date.now(),likes:12+count,commentSchema:9};R.posts.unshift(q);R.comments[id]=library(q);q.commentEdition=EDITION;save();notify('X','你参与的讨论有了新的引用','x',id)}
+function captionChoices(root){const item=ITEMS[root.itemId]?.name||'这张图',topic=topicFor(root);if(topic==='interview')return ['我刚把完整版看完了。不是，前面那个问题你们真就一眼不看？','夸一句{b}怎么还得先查粉籍啊 我头都大了','别给我甩那十秒了 我已经看了八百遍那个断头版本','我把原文放这儿，要骂先把它点开。'];if(topic==='selfcrit')return ['她也没说整场不行吧，你们怎么直接把她按到对家去了','我就说一句{a}今天好看，你们复盘我旁听。','看完她那条长文我又重播了一次，有的地方确实之前没注意。','我先存原文。别又只截前面那几个字到处挂。'];if(topic==='takeout')return ['两份外卖而已，你们快把桌子都坐满了。我先去找优惠券。','我只是想问哪家好吃，点进去像在查谁和谁吃饭。','你们先聊，我那份已经到了。','别光问她偏谁了，问问饭行不行。'];if(['earphone_case','coffee','mouse','hat','clothes'].includes(topic))return ['我就来问'+item+'，你们怎么还要我先表态。','这个'+item+'我先存了。跟谁同款等型号认出来再说。','我看完原图了，先别给它安排那么多故事。','有没有人真的在聊'+item+'好不好用，我刚才往下翻半天。'];return ['我又点开她那条了，怎么越看越精神。','她这条底下有人想安静看，有人已经开始分粉籍。我坐旁边看。','我来找舞台原片，谁把链接刷没了啊。','我本来只想点个赞，不知怎么又看了十分钟。']}
+discussionBodies=function(root){if(root.scope!=='public')return [];const topic=topicFor(root),active=(R.fanInteractions||[]).filter(r=>r.postId===root.id).length;const rate=['history','interview','selfcrit','takeout'].includes(topic)?2:4;if(hash(root.id)%rate!==0&&active<2)return [];return captionChoices(root).slice(0,active>=2?2:1).map(txt)};
+function rewriteFanPost(p){if(p.own||p.platform!=='x')return;if(p.source&&p.id===p.source+':discussion:'+p.angle){const root=R.posts.find(q=>q.id===p.source);if(root){p.originalFanCaption??=p.body;p.fanCaptionTemplate=captionChoices(root)[p.angle%4];p.body=txt(p.fanCaptionTemplate)}}else if(/有人认真夸工作|先看这条文字帖|各自喜欢的细节|关于这张.*有几种不同看法/.test(p.body)){p.originalFanCaption??=p.body;p.fanCaptionTemplate=['不是 这条底下怎么又吵起来了。','我刚点开原文，看完才发现你们吵的不是一件事。','我先看我的视频了，你们慢慢聊。','我来找图，看到现在一张没存。'][hash(p.id)%4];p.body=txt(p.fanCaptionTemplate)}}
 // Only comment text is revised. Saved player writing and all non-comment v5.2 state stay as-is.
 for(const p of R.posts){if(p.commentEdition===EDITION)continue;cache.delete(p.id)}
 window.__commentAudit=()=>R.posts.map(p=>{const rows=library(p),nested=rows.flatMap(c=>c.replies||[]);return {id:p.id,source:p.source||null,topic:topicFor(p),top:rows.length,nested:nested.length,accounts:new Set([...rows,...nested].map(c=>c.handle)).size,loading:'10 top; +10 per click; 4 replies; +12 per click'}});
