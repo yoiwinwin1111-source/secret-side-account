@@ -1,0 +1,13 @@
+// No personal saves or external dependencies. Run: node tests/storage-codec.cjs
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const html=fs.readFileSync(fs.existsSync('index.html')?'index.html':'secret-side-account/index.html','utf8'),script=html.match(/<script>([\s\S]*?)<\/script>/)[1],codec=script.slice(0,script.indexOf('const USER_V5=')),save=script.slice(script.indexOf('function save(){'),script.indexOf('function normalize(){'));
+const values=new Map();let quota=Infinity;
+const ctx=vm.createContext({console,Map,JSON,Error,localStorage:{getItem:k=>values.get(k)||null,setItem(k,v){const next=new Map(values);next.set(k,v);if([...next].reduce((s,[k,v])=>s+2*(k.length+v.length),0)>quota){const e=Error('quota');e.name='QuotaExceededError';throw e}values.set(k,v)}}});
+vm.runInContext(codec+';const KEY="fixture";let loadError="";function toast(){};let R={phase:4,accounts:{a:{avatar:"data:image/jpeg;base64,"+"abcdef".repeat(20000)}},posts:[{own:true,body:"keep my post"}],comments:{c:[{own:true,text:"keep my comment"}]},commentArchivesV6:{legacy:[{own:true,text:"keep archive"}]},notes:[]};'+save,ctx);
+const run=s=>vm.runInContext(s,ctx);assert(run('save()'));const encoded=values.get('fixture');assert(encoded.startsWith('SSA-LZ2:'));assert(run('decodeStoredText(localStorage.getItem(KEY))===JSON.stringify(R)'));
+for(let i=0;i<20;i++)assert(run('R.notes.push('+i+');save()'));assert.equal(JSON.parse(run('decodeStoredText(localStorage.getItem(KEY))')).notes.length,20);
+const legacy=run('JSON.stringify(R)');values.set('fixture.backup-before-v9',legacy);run('compactStoredBackups()');assert(run('decodeStoredText(localStorage.getItem(KEY+".backup-before-v9"))===JSON.stringify(R)'));assert(values.has('fixture.backup-before-v9'));
+assert(run('decodeStoredText("SSA-LZ1:"+LZString.compressToUTF16(JSON.stringify(R)))===JSON.stringify(R)'));
+const before=values.get('fixture');quota=[...values].reduce((s,[k,v])=>s+2*(k.length+v.length),0);run('R.notes.push("new data must not overwrite the previous save".repeat(200))');assert.equal(run('save()'),false);assert.equal(values.get('fixture'),before);assert.equal(JSON.parse(run('decodeStoredText(localStorage.getItem(KEY))')).notes.length,20);
+assert.throws(()=>run('decodeStoredText("SSA-LZ2:not-json")'));assert.equal(values.get('fixture'),before);
+console.log('PASS: lossless images/posts/comments/archives, 20 saves, old JSON/LZ1 compatibility, backup retained, quota rollback, corrupt data leaves prior save intact');
